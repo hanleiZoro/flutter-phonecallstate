@@ -1,12 +1,12 @@
 import Flutter
 import UIKit
-import CallKit
+//import CallKit
 
 
 @available(iOS 10.0,*)
-public class SwiftPhonecallstatePlugin: NSObject, FlutterPlugin, CXCallObserverDelegate {
+public class SwiftPhonecallstatePlugin: NSObject, FlutterPlugin {
 
-    var callObserver: CXCallObserver!
+//    var callObserver: CXCallObserver!
     var _channel: FlutterMethodChannel
 
     public static func register(with registrar: FlutterPluginRegistrar) {
@@ -35,31 +35,31 @@ public class SwiftPhonecallstatePlugin: NSObject, FlutterPlugin, CXCallObserverD
 
     @available(iOS 10.0,*)
     func setupCallObserver(){
-        callObserver = CXCallObserver()
-        callObserver.setDelegate(self, queue: nil)
+//        callObserver = CXCallObserver()
+//        callObserver.setDelegate(self, queue: nil)
     }
 
-
-    @available(iOS 10.0,*)
-    public func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
-        if call.hasEnded == true {
-            print("CXCallState :Disconnected")
-             _channel.invokeMethod("phone.disconnected", arguments: nil)
-        }
-        if call.isOutgoing == true && call.hasConnected == false {
-            print("CXCallState :Dialing")
-            _channel.invokeMethod("phone.dialing", arguments: nil)
-        }
-        if call.isOutgoing == false && call.hasConnected == false && call.hasEnded == false {
-            print("CXCallState :Incoming")
-            _channel.invokeMethod("phone.incoming", arguments: nil)
-        }
-
-        if call.hasConnected == true && call.hasEnded == false {
-            print("CXCallState : Connected")
-             _channel.invokeMethod("phone.connected", arguments: nil)
-        }
-    }
+//
+//    @available(iOS 10.0,*)
+//    public func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
+//        if call.hasEnded == true {
+//            print("CXCallState :Disconnected")
+//             _channel.invokeMethod("phone.disconnected", arguments: nil)
+//        }
+//        if call.isOutgoing == true && call.hasConnected == false {
+//            print("CXCallState :Dialing")
+//            _channel.invokeMethod("phone.dialing", arguments: nil)
+//        }
+//        if call.isOutgoing == false && call.hasConnected == false && call.hasEnded == false {
+//            print("CXCallState :Incoming")
+//            _channel.invokeMethod("phone.incoming", arguments: nil)
+//        }
+//
+//        if call.hasConnected == true && call.hasEnded == false {
+//            print("CXCallState : Connected")
+//             _channel.invokeMethod("phone.connected", arguments: nil)
+//        }
+//    }
 
 }
 

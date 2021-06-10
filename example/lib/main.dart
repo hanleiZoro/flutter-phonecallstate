@@ -10,14 +10,13 @@ class MyApp extends StatefulWidget {
 }
 
 enum PhonecallState { incoming, dialing, connected, disconnected, none }
-enum PhonecallStateError { notimplementedyet  }
+enum PhonecallStateError { notimplementedyet }
 
 class _MyAppState extends State<MyApp> {
+  Phonecallstate? phonecallstate;
+  PhonecallState? phonecallstatus;
 
-  Phonecallstate  phonecallstate;
-  PhonecallState phonecallstatus;
-
-  var  phonecallstatuslog;
+  var phonecallstatuslog;
 
   @override
   initState() {
@@ -31,43 +30,44 @@ class _MyAppState extends State<MyApp> {
     phonecallstate = new Phonecallstate();
     phonecallstatus = PhonecallState.none;
 
-
-    phonecallstate.setIncomingHandler(() {
+    phonecallstate!.setIncomingHandler(() {
       setState(() {
         phonecallstatus = PhonecallState.incoming;
-        phonecallstatuslog =  phonecallstatuslog.toString() + PhonecallState.incoming.toString()+"\n";
+        phonecallstatuslog = phonecallstatuslog.toString() +
+            PhonecallState.incoming.toString() +
+            "\n";
       });
     });
 
-    phonecallstate.setDialingHandler(() {
+    phonecallstate!.setDialingHandler(() {
       setState(() {
         phonecallstatus = PhonecallState.dialing;
-        phonecallstatuslog =  phonecallstatuslog.toString() + PhonecallState.dialing.toString()+"\n";
+        phonecallstatuslog = phonecallstatuslog.toString() +
+            PhonecallState.dialing.toString() +
+            "\n";
       });
     });
 
-    phonecallstate.setConnectedHandler(() {
+    phonecallstate!.setConnectedHandler(() {
       setState(() {
         phonecallstatus = PhonecallState.connected;
-        phonecallstatuslog =  phonecallstatuslog.toString() + PhonecallState.connected.toString()+"\n";
+        phonecallstatuslog = phonecallstatuslog.toString() +
+            PhonecallState.connected.toString() +
+            "\n";
       });
     });
 
-    phonecallstate.setDisconnectedHandler(() {
+    phonecallstate!.setDisconnectedHandler(() {
       setState(() {
         phonecallstatus = PhonecallState.disconnected;
-        phonecallstatuslog =  phonecallstatuslog.toString() + PhonecallState.disconnected.toString()+"\n";
+        phonecallstatuslog = phonecallstatuslog.toString() +
+            PhonecallState.disconnected.toString() +
+            "\n";
       });
     });
 
-    phonecallstate.setErrorHandler((msg) {
-
-    });
+    phonecallstate!.setErrorHandler((msg) {});
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
